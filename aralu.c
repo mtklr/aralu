@@ -1,3 +1,4 @@
+#include <pwd.h>
 #include "aralu.h"
 #include "stuff.h"
 
@@ -236,6 +237,8 @@ short i, j;
 short ret, restored;
 char op_username[12];
 char sk[10];
+char *user = NULL;
+struct passwd *pw;
 
 /* initialize BACKPACK struct for spaces */
 for (i=1; i< MAXINVEN; i++)
@@ -249,7 +252,16 @@ in_store = in_arena = can_exit = ret = restored = FALSE;
 level = 1;
 randomize(); /* to get the ball rolling for random numbers */
 
-strcpy( username, SUPERUSER);
+pw = getpwuid(getuid());
+user = pw->pw_name;
+
+if ((user == NULL) || (*user == '\0')) {
+  if ((user = getenv("USER")) == NULL) {
+    user = "nobody";
+  }
+}
+
+strcpy( username, user);
 if ( argc > 1) {
   if ( argv[1][0] != '-') ret = E_USAGE;
   else switch( toupper( argv[1][1])) {
