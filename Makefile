@@ -49,7 +49,7 @@ install: all
 	$(INSTALL_DATA) $(MON_FILE) $(DESTDIR)$(datadir)
 	$(INSTALL_DATA) $(foreach f,$(SCREEN_FILES),$f) $(DESTDIR)$(datadir)
 	$(INSTALL) -d $(DESTDIR)$(localstatedir)
-	$(INSTALL_DATA) /dev/null $(DESTDIR)$(localstatedir)/$(SCORE_FILE)
+	$(INSTALL_DATA) $(SCORE_FILE) $(DESTDIR)$(localstatedir)/$(SCORE_FILE)
 
 .PHONY: uninstall
 uninstall:
