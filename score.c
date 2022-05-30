@@ -33,7 +33,7 @@ short readscore() {
    short rank;
    short ret = 0;
 
-   if( (scf = fopen( scorefile, "r")) == NULL)
+   if( (scf = fopen( SCOREFILE, "r")) == NULL)
       ret = E_OPENSCORE;
    else {
          while(fscanf(scf,"%hd",&rank)!=EOF  &&  rank < MAXSCOREENTRIES)
@@ -117,7 +117,7 @@ short writescore() {
    int tmp;
    char score_string[70];
 
-   if( (scf = fopen( scorefile, "r+")) == NULL)
+   if( (scf = fopen( SCOREFILE, "r+")) == NULL)
       ret = E_OPENSCORE;
    else {
       for (tmp = 0; tmp < scoreentries; tmp++) {
@@ -162,7 +162,7 @@ short ret = 0;
 short file_count;
 char blank_line[70];
 
-if ( ( newfile = fopen(scorefile,"w")) != NULL) {
+if ( ( newfile = fopen(SCOREFILE,"w")) != NULL) {
   for (i=0; i<69; i++)
      blank_line[i] = ' '; /* Make the blank line to put into the score file */
   blank_line[69] = '\0';

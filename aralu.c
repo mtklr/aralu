@@ -68,7 +68,7 @@ char screenfile[80];
 short ret = 0;
 short i, j;
 
-sprintf(screenfile,"%sscreen.%d",screenpath,level);
+sprintf(screenfile,"%s/screen.%d",SCREENPATH,level);
 if ( (readfile = fopen( screenfile,"r")) != NULL) {
  for (i=0; i< MAXROWS; i++) {
      fgets (maparray[i], MAXCOLS+5, readfile);
@@ -88,7 +88,7 @@ if ( (readfile = fopen( screenfile,"r")) != NULL) {
 /* can't print out the monsters with the rest of the map, since the character
    you see on the screen is not the same as the encoded character of the
    monster, so we have to do it in write_map() */
-if ( access( savefile, R_OK) != 0  &&  level == 1)
+if ( access( SAVEFILE, R_OK) != 0  &&  level == 1)
   if ( (ret = read_monsters())) errmess( ret);
 
 } /* End file-open IF */
@@ -303,7 +303,7 @@ prt_status();
 get_time();
 put_windows();
 
-remove( savefile); /* delete savefile so people can't cheat */
+remove( SAVEFILE); /* delete savefile so people can't cheat */
 wtimeout(dsp_viewport, TIMEOUT); /* things keep moving without player input */
 while(!dead) {
 if ( (ret = gameloop()) == E_GAINLEVEL) {

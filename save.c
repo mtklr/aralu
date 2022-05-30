@@ -9,7 +9,7 @@ short savegame()
 FILE *outfile;
 short ret = 0;
 
-if ( (outfile = fopen( savefile,"w")) != NULL) {
+if ( (outfile = fopen( SAVEFILE,"w")) != NULL) {
   /* write out information in the same way it was read in */
   /* create struct so people can't edit savefile */
   strcpy( player.username,username);
@@ -72,8 +72,8 @@ k = 0;
  }
 else ret = E_OPENSAVE;
 fclose ( outfile);
-if ( stat( savefile, &sfstat) != 0) ret = E_WRITESAVE;
-else if ( (outfile = fopen( savefile, "a")) == NULL) ret = E_OPENSAVE;
+if ( stat( SAVEFILE, &sfstat) != 0) ret = E_WRITESAVE;
+else if ( (outfile = fopen( SAVEFILE, "a")) == NULL) ret = E_OPENSAVE;
 else {
    if ( fwrite( &sfstat, sizeof( sfstat), 1, outfile) < 1) ret = E_WRITESAVE;
    fclose( outfile);
@@ -87,10 +87,10 @@ FILE *infile;
 short ret = 0;
 struct stat oldsfstat;
 
-if ( stat( savefile, &oldsfstat) != 0) ret = E_NOSAVEFILE;
+if ( stat( SAVEFILE, &oldsfstat) != 0) ret = E_NOSAVEFILE;
 else {
 printf("\33[24;1HRestoring game...\n");
-if ( (infile = fopen( savefile,"r")) != NULL) {
+if ( (infile = fopen( SAVEFILE,"r")) != NULL) {
   if ( fread( &player, sizeof(player), 1, infile) == 1) {
     if ( fread( &ppos, sizeof(ppos), 1, infile) == 1)
       if ( fread( &monsters, sizeof(monsters), 1, infile) == 1)

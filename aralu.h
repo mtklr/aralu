@@ -11,14 +11,28 @@
 #define location(chr,target) ((unsigned int)strchr(target,chr)-(unsigned int)target)
 /* #define upcase(str_to_do) {$DESCRIPTOR(a,str_to_do);STR$UPCASE(&a,&a);} */
 
-#define scorefile   "aralu.score"
-#define savefile    "aralu.sav"
-#define monfile     "monsters.dat"
+#ifndef SCOREFILE
+#define SCOREFILE   "aralu.score"
+#endif
+
+#ifndef SAVEFILE
+#define SAVEFILE    "aralu.sav"
+#endif
+
+#ifndef MONFILE
+#define MONFILE     "monsters.dat"
+#endif
 
 /* Screenfiles MUST have MAXROWS x MAXCOLS lines in it, otherwise the game */
 /* will screw up fast. */
-#define screenpath      "./"
+#ifndef SCREENPATH
+#define SCREENPATH      "./"
+#endif
+
+#ifndef SUPERUSER
 #define SUPERUSER       "MASANDY"
+#endif
+
 #define MAXSCOREENTRIES 21  /* number of entries in the score file */
 #define SCRATIOV        4   /* how close you get to the top/bottom */
 #define SCRATIOH        16  /* how close you get to the left/right */

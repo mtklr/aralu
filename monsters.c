@@ -248,7 +248,7 @@ char dummy[80];
 monsters_struct *m;  /* new monster type read in */
 monsters_struct *nm; /* next monster number of that type */
 
-if ( (mfile = fopen( monfile,"r")) != NULL) {
+if ( (mfile = fopen( MONFILE,"r")) != NULL) {
   do {
       if (count++ > 10) {
        printf("\nNo ending comment in monsters datafile.");
