@@ -33,7 +33,7 @@
 #define SUPERUSER       "MASANDY"
 #endif
 
-#define MAXSCOREENTRIES 21  /* number of entries in the score file */
+#define MAXSCOREENTRIES 20  /* number of entries in the score file */
 #define SCRATIOV        4   /* how close you get to the top/bottom */
 #define SCRATIOH        16  /* how close you get to the left/right */
 #define BONUS           200 /* bonus multiplier per level */
